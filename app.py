@@ -17,8 +17,6 @@ def get_response(data):
     return json.dumps(data), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 
-
-
 class User(db.Model):
     __tablename__ = 'user'
 
@@ -115,6 +113,9 @@ def user_page(uid):
         user.phone = usr_data['phone']
         user.email = usr_data['email']
         user.age = usr_data['age']
+
+        db.session.add(user)
+        db.session.commit()
         return '', 204
 
 
